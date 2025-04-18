@@ -1,0 +1,23 @@
+ln original_file hard_link_name
+
+ln -s target_file symbolic_link_name
+
+
+ls -l: Displays file details
+
+stat: Shows detailed file information, including the inode.
+stat filename
+
+ls -i Check Inode Number
+
+
+
+Use hard links when you need a duplicate reference to a file that remains functional even if the original file's directory entry is deleted.
+
+Example: Maintaining multiple access points to critical configuration files.
+
+
+Soft links can point to files or directories on different filesystems, making them suitable for linking resources that span multiple partitions or network drives.
+Example: Linking a file on /mnt/external_drive to a directory in /home/user.
+
+
