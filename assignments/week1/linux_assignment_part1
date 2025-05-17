@@ -789,6 +789,94 @@ May 17 14:26:54 ip-172-31-22-221.ec2.internal httpd[5162]: Server configured, l>
 
 ============
 
-5. 
+5. System Performance Monitoring + System Info
+
+===========
+
+[ec2-user@ip-172-31-22-221 devteam]$ top
+top - 14:39:42 up  1:14,  1 user,  load average: 0.00, 0.00, 0.00
+Tasks: 105 total,   1 running, 104 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni, 87.5 id,  0.0 wa,  0.3 hi,  0.0 si, 12.2 st
+MiB Mem :    764.6 total,    198.6 free,    284.0 used,    402.2 buff/cache
+MiB Swap:      0.0 total,      0.0 free,      0.0 used.    480.6 avail Mem
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   3953 ec2-user  20   0   20508   7048   5120 S   0.3   0.9   0:00.48 sshd
+   5578 ec2-user  20   0   10532   3840   3200 R   0.3   0.5   0:00.01 top
+      1 root      20   0  174908  17588  10936 S   0.0   2.2   0:01.79 systemd
+      2 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kthreadd
+      3 root      20   0       0      0      0 S   0.0   0.0   0:00.00 pool_wo+
+      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker+
+      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker+
+      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker+
+      7 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker+
+      9 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker+
+     11 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker+
+     12 root      20   0       0      0      0 I   0.0   0.0   0:00.61 kworker+
+     13 root      20   0       0      0      0 I   0.0   0.0   0:00.00 rcu_tas+
+     14 root      20   0       0      0      0 I   0.0   0.0   0:00.00 rcu_tas+
+     15 root      20   0       0      0      0 I   0.0   0.0   0:00.00 rcu_tas+
+     16 root      20   0       0      0      0 S   0.0   0.0   0:00.09 ksoftir+
+     17 root       0 -20       0      0      0 S   0.0   0.0   0:00.41 pr/ttyS0
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ htop
+-bash: htop: command not found
+[ec2-user@ip-172-31-22-221 devteam]$ sudo yum install htop
+Updating Subscription Management repositories.
+Unable to read consumer identity
+
+This system is not registered with an entitlement server. You can use "rhc" or "subscription-manager" to register.
+
+Last metadata expiration check: 0:26:38 ago on Sat 17 May 2025 02:13:27 PM UTC.
+No match for argument: htop
+Error: Unable to find a match: htop
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ free -h
+               total        used        free      shared  buff/cache   available
+Mem:           764Mi       305Mi       176Mi       6.0Mi       402Mi       458Mi
+Swap:             0B          0B          0B
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ uptime
+ 14:41:28 up  1:16,  1 user,  load average: 0.00, 0.00, 0.00
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ uptime | awk '{print $10, $11, $12}'
+0.00
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ uname -m
+x86_64
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ uname -r
+5.14.0-503.40.1.el9_5.x86_64
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ uname -o
+GNU/Linux
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ who
+ec2-user pts/0        2025-05-17 13:25 (122.170.250.92)
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs        4.0M     0  4.0M   0% /dev
+tmpfs           383M     0  383M   0% /dev/shm
+tmpfs           153M  4.4M  149M   3% /run
+/dev/xvda4      8.8G  1.9G  7.0G  21% /
+/dev/xvda3      960M  303M  658M  32% /boot
+/dev/xvda2      200M  7.1M  193M   4% /boot/efi
+tmpfs            77M     0   77M   0% /run/user/1000
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ du
+du: cannot access '.': Permission denied
+[ec2-user@ip-172-31-22-221 devteam]$ sudo du
+0       .
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$
+
+===============
+
+6. Process Management
+
+===============
+
+
 
 
