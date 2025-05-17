@@ -1,1 +1,794 @@
+1 File System Management
+
+======================
+[ec2-user@ip-172-31-22-221 ~]$ mkdir project_files
+[ec2-user@ip-172-31-22-221 ~]$ cd project_files/
+[ec2-user@ip-172-31-22-221 project_files]$ touch readme.txt
+[ec2-user@ip-172-31-22-221 project_files]$ ls
+readme.txt
+[ec2-user@ip-172-31-22-221 project_files]$ cd /home/
+[ec2-user@ip-172-31-22-221 home]$ ls
+ec2-user
+[ec2-user@ip-172-31-22-221 home]$ cd ec2-user/
+[ec2-user@ip-172-31-22-221 ~]$ pwd
+/home/ec2-user
+[ec2-user@ip-172-31-22-221 ~]$ cd project_files/
+[ec2-user@ip-172-31-22-221 project_files]$ cp readme.txt info.txt
+[ec2-user@ip-172-31-22-221 project_files]$ ls
+info.txt  readme.txt
+[ec2-user@ip-172-31-22-221 project_files]$ mv info.txt ../
+[ec2-user@ip-172-31-22-221 project_files]$ ls
+readme.txt
+[ec2-user@ip-172-31-22-221 project_files]$ cd ..
+[ec2-user@ip-172-31-22-221 ~]$ l
+-bash: l: command not found
+[ec2-user@ip-172-31-22-221 ~]$ ls
+info.txt  project_files  shell_scripts
+[ec2-user@ip-172-31-22-221 ~]$ pwd
+/home/ec2-user
+[ec2-user@ip-172-31-22-221 ~]$ cd project_files/
+[ec2-user@ip-172-31-22-221 project_files]$ rm readme.txt
+[ec2-user@ip-172-31-22-221 project_files]$ pwd
+/home/ec2-user/project_files
+[ec2-user@ip-172-31-22-221 project_files]$
+[ec2-user@ip-172-31-22-221 project_files]$ la -al
+-bash: la: command not found
+[ec2-user@ip-172-31-22-221 project_files]$ ls -al
+total 0
+drwxr-xr-x. 2 ec2-user ec2-user   6 May 17 13:48 .
+drwx------. 6 ec2-user ec2-user 183 May 17 13:48 ..
+[ec2-user@ip-172-31-22-221 project_files]$
+[ec2-user@ip-172-31-22-221 project_files]$ ls
+[ec2-user@ip-172-31-22-221 project_files]$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs        4.0M     0  4.0M   0% /dev
+tmpfs           383M     0  383M   0% /dev/shm
+tmpfs           153M  4.4M  149M   3% /run
+/dev/xvda4      8.8G  1.8G  7.0G  21% /
+/dev/xvda3      960M  303M  658M  32% /boot
+/dev/xvda2      200M  7.1M  193M   4% /boot/efi
+tmpfs            77M     0   77M   0% /run/user/1000
+[ec2-user@ip-172-31-22-221 project_files]$ cd ..
+[ec2-user@ip-172-31-22-221 ~]$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs        4.0M     0  4.0M   0% /dev
+tmpfs           383M     0  383M   0% /dev/shm
+tmpfs           153M  4.4M  149M   3% /run
+/dev/xvda4      8.8G  1.8G  7.0G  21% /
+/dev/xvda3      960M  303M  658M  32% /boot
+/dev/xvda2      200M  7.1M  193M   4% /boot/efi
+tmpfs            77M     0   77M   0% /run/user/1000
+[ec2-user@ip-172-31-22-221 ~]$ du -sh project_files/
+0       project_files/
+[ec2-user@ip-172-31-22-221 ~]$
+
+=================
+
+2. User and Group Administration
+
+===============
+
+[ec2-user@ip-172-31-22-221 ~]$ sudo useradd user1
+[ec2-user@ip-172-31-22-221 ~]$ sudo useradd user2, user3
+Usage: useradd [options] LOGIN
+       useradd -D
+       useradd -D [options]
+
+Options:
+      --badname                 do not check for bad names
+  -b, --base-dir BASE_DIR       base directory for the home directory of the
+                                new account
+      --btrfs-subvolume-home    use BTRFS subvolume for home directory
+  -c, --comment COMMENT         GECOS field of the new account
+  -d, --home-dir HOME_DIR       home directory of the new account
+  -D, --defaults                print or change default useradd configuration
+  -e, --expiredate EXPIRE_DATE  expiration date of the new account
+  -f, --inactive INACTIVE       password inactivity period of the new account
+  -g, --gid GROUP               name or ID of the primary group of the new
+                                account
+  -G, --groups GROUPS           list of supplementary groups of the new
+                                account
+  -h, --help                    display this help message and exit
+  -k, --skel SKEL_DIR           use this alternative skeleton directory
+  -K, --key KEY=VALUE           override /etc/login.defs defaults
+  -l, --no-log-init             do not add the user to the lastlog and
+                                faillog databases
+  -m, --create-home             create the user's home directory
+  -M, --no-create-home          do not create the user's home directory
+  -N, --no-user-group           do not create a group with the same name as
+                                the user
+  -o, --non-unique              allow to create users with duplicate
+                                (non-unique) UID
+  -p, --password PASSWORD       encrypted password of the new account
+  -r, --system                  create a system account
+  -R, --root CHROOT_DIR         directory to chroot into
+  -P, --prefix PREFIX_DIR       prefix directory where are located the /etc/* files
+  -s, --shell SHELL             login shell of the new account
+  -u, --uid UID                 user ID of the new account
+  -U, --user-group              create a group with the same name as the user
+  -Z, --selinux-user SEUSER     use a specific SEUSER for the SELinux user mapping
+
+[ec2-user@ip-172-31-22-221 ~]$ sudo useradd user2
+[ec2-user@ip-172-31-22-221 ~]$ sudo useradd user3
+[ec2-user@ip-172-31-22-221 ~]$
+[ec2-user@ip-172-31-22-221 ~]$ sudo groupadd dev-team
+[ec2-user@ip-172-31-22-221 ~]$ sudo useradd -G dev-team user1
+useradd: user 'user1' already exists
+[ec2-user@ip-172-31-22-221 ~]$
+[ec2-user@ip-172-31-22-221 ~]$ cat /etc/group | grep dev-team
+dev-team:x:1004:
+[ec2-user@ip-172-31-22-221 ~]$ usermod -G dev-team user1
+usermod: Permission denied.
+usermod: cannot lock /etc/passwd; try again later.
+[ec2-user@ip-172-31-22-221 ~]$ sudo usermod -G dev-team user1
+[ec2-user@ip-172-31-22-221 ~]$ sudo usermod -G dev-team user2
+[ec2-user@ip-172-31-22-221 ~]$
+[ec2-user@ip-172-31-22-221 ~]$ sudo passwd user1
+Changing password for user user1.
+New password:
+BAD PASSWORD: The password is shorter than 8 characters
+Retype new password:
+passwd: all authentication tokens updated successfully.
+[ec2-user@ip-172-31-22-221 ~]$
+[ec2-user@ip-172-31-22-221 ~]$
+[ec2-user@ip-172-31-22-221 ~]$ sudo passwd user2
+Changing password for user user2.
+New password:
+BAD PASSWORD: The password is shorter than 8 characters
+Retype new password:
+passwd: all authentication tokens updated successfully.
+[ec2-user@ip-172-31-22-221 ~]$
+[ec2-user@ip-172-31-22-221 ~]$ mkdir /home/devteam
+mkdir: cannot create directory ‘/home/devteam’: Permission denied
+[ec2-user@ip-172-31-22-221 ~]$ sudo mkdir /home/devteam
+[ec2-user@ip-172-31-22-221 ~]$ cd /home/devteam/
+[ec2-user@ip-172-31-22-221 devteam]$ touch test1.txt test2.txt test3.txt
+touch: cannot touch 'test1.txt': Permission denied
+touch: cannot touch 'test2.txt': Permission denied
+touch: cannot touch 'test3.txt': Permission denied
+[ec2-user@ip-172-31-22-221 devteam]$ sudo touch test1.txt test2.txt test3.txt
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ ls
+test1.txt  test2.txt  test3.txt
+[ec2-user@ip-172-31-22-221 devteam]$ cat /etc/group | grep dev-team
+dev-team:x:1004:user1,user2
+[ec2-user@ip-172-31-22-221 devteam]$ sudo chown: devteam /home/devteam/
+sudo: chown:: command not found
+[ec2-user@ip-172-31-22-221 devteam]$ man chown
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ sudo chown devteam /home/devteam/
+chown: invalid user: ‘devteam’
+[ec2-user@ip-172-31-22-221 devteam]$ sudo chown dev-team /home/devteam/
+chown: invalid user: ‘dev-team’
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ sudo chgrp devteam /home/devteam/
+chgrp: invalid group: ‘devteam’
+[ec2-user@ip-172-31-22-221 devteam]$ sudo chgrp dev-team /home/devteam/
+[ec2-user@ip-172-31-22-221 devteam]$ cat /etc/group | grep dev-team
+dev-team:x:1004:user1,user2
+[ec2-user@ip-172-31-22-221 devteam]$ sudo chmod 770 /home/devteam/
+[ec2-user@ip-172-31-22-221 devteam]$ cat /etc/group | grep dev-team
+dev-team:x:1004:user1,user2
+[ec2-user@ip-172-31-22-221 devteam]$ sudo chmod g+w /home/devteam/
+[ec2-user@ip-172-31-22-221 devteam]$ cat /etc/group | grep dev-team
+dev-team:x:1004:user1,user2
+[ec2-user@ip-172-31-22-221 devteam]$ su user1
+Password:
+[user1@ip-172-31-22-221 devteam]$
+[user1@ip-172-31-22-221 devteam]$ ls
+test1.txt  test2.txt  test3.txt
+[user1@ip-172-31-22-221 devteam]$ touch test4.txt
+[user1@ip-172-31-22-221 devteam]$
+[user1@ip-172-31-22-221 devteam]$ exit
+exit
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ sudo passwd user3
+Changing password for user user3.
+New password:
+BAD PASSWORD: The password is shorter than 8 characters
+Retype new password:
+passwd: all authentication tokens updated successfully.
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ su user3
+Password:
+[user3@ip-172-31-22-221 devteam]$ ls
+ls: cannot open directory '.': Permission denied
+[user3@ip-172-31-22-221 devteam]$
+[user3@ip-172-31-22-221 devteam]$ exit
+exit
+[ec2-user@ip-172-31-22-221 devteam]$ sudo userdel user3
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$
+
+==============
+
+3. Package Management with Yum
+
+============
+
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ sudo service httpd
+The service command supports only basic LSB actions (start, stop, restart, try-restart, reload, reload-or-restart, try-reload-or-restart, force-reload, status, condrestart). For other actions, please try to use systemctl.
+[ec2-user@ip-172-31-22-221 devteam]$ sudo httpd status
+Usage: httpd [-D name] [-d directory] [-f file]
+             [-C "directive"] [-c "directive"]
+             [-k start|restart|graceful|graceful-stop|stop]
+             [-v] [-V] [-h] [-l] [-L] [-t] [-T] [-S] [-X]
+Options:
+  -D name            : define a name for use in <IfDefine name> directives
+  -d directory       : specify an alternate initial ServerRoot
+  -f file            : specify an alternate ServerConfigFile
+  -C "directive"     : process directive before reading config files
+  -c "directive"     : process directive after reading config files
+  -e level           : show startup errors of level (see LogLevel)
+  -E file            : log startup errors to file
+  -v                 : show version number
+  -V                 : show compile settings
+  -h                 : list available command line options (this page)
+  -l                 : list compiled in modules
+  -L                 : list available configuration directives
+  -t -D DUMP_VHOSTS  : show parsed vhost settings
+  -t -D DUMP_RUN_CFG : show parsed run settings
+  -S                 : a synonym for -t -D DUMP_VHOSTS -D DUMP_RUN_CFG
+  -t -D DUMP_MODULES : show all loaded modules
+  -M                 : a synonym for -t -D DUMP_MODULES
+  -t -D DUMP_INCLUDES: show all included configuration files
+  -t                 : run syntax check for config files
+  -T                 : start without DocumentRoot(s) check
+  -X                 : debug mode (only one worker, do not detach)
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ sudo systemctl status httpd
+○ httpd.service - The Apache HTTP Server
+     Loaded: loaded (/usr/lib/systemd/system/httpd.service; disabled; preset: d>
+     Active: inactive (dead)
+       Docs: man:httpd.service(8)
+ ESCOC
+
+stem/httpd.service; disabled; preset: disabled)
+
+
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+ ESCOC
+
+sabled)
+
+
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+ ESCOD
+
+stem/httpd.service; disabled; preset: disabled)
+
+
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+ ESCOD
+○ httpd.service - The Apache HTTP Server
+     Loaded: loaded (/usr/lib/systemd/system/httpd.service; disabled; preset: d>
+     Active: inactive (dead)
+       Docs: man:httpd.service(8)
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+ ESCOD
+○ httpd.service - The Apache HTTP Server
+     Loaded: loaded (/usr/lib/systemd/system/httpd.service; disabled; preset: d>
+     Active: inactive (dead)
+       Docs: man:httpd.service(8)
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ sudo systemctl status httpd
+○ httpd.service - The Apache HTTP Server
+     Loaded: loaded (/usr/lib/systemd/system/httpd.service; disabled; preset: d>
+     Active: inactive (dead)
+       Docs: man:httpd.service(8)
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ sudo systemctl status httpd | more
+○ httpd.service - The Apache HTTP Server
+     Loaded: loaded (/usr/lib/systemd/system/httpd.service; disabled; preset: di
+sabled)
+     Active: inactive (dead)
+       Docs: man:httpd.service(8)
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ sudo systemctl start httpd
+[ec2-user@ip-172-31-22-221 devteam]$ sudo systemctl status httpd | more
+● httpd.service - The Apache HTTP Server
+     Loaded: loaded (/usr/lib/systemd/system/httpd.service; disabled; preset: di
+sabled)
+     Active: active (running) since Sat 2025-05-17 14:19:09 UTC; 3s ago
+       Docs: man:httpd.service(8)
+   Main PID: 4661 (httpd)
+     Status: "Started, listening on: port 80"
+      Tasks: 177 (limit: 4360)
+     Memory: 25.4M
+        CPU: 70ms
+     CGroup: /system.slice/httpd.service
+             ├─4661 /usr/sbin/httpd -DFOREGROUND
+             ├─4662 /usr/sbin/httpd -DFOREGROUND
+             ├─4663 /usr/sbin/httpd -DFOREGROUND
+             ├─4664 /usr/sbin/httpd -DFOREGROUND
+             └─4665 /usr/sbin/httpd -DFOREGROUND
+
+May 17 14:19:09 ip-172-31-22-221.ec2.internal systemd[1]: Starting The Apache HT
+TP Server...
+May 17 14:19:09 ip-172-31-22-221.ec2.internal systemd[1]: Started The Apache HTT
+P Server.
+May 17 14:19:09 ip-172-31-22-221.ec2.internal httpd[4661]: Server configured, li
+stening on: port 80
+[ec2-user@ip-172-31-22-221 devteam]$ sudo systemctl enable httpd
+Created symlink /etc/systemd/system/multi-user.target.wants/httpd.service → /usr/lib/systemd/system/httpd.service.
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ sudo wget http://localhost
+sudo: wget: command not found
+[ec2-user@ip-172-31-22-221 devteam]$ sudo curl http://localhost
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+        <head>
+                <title>Test Page for the HTTP Server on Red Hat Enterprise Linux</title>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+                <style type="text/css">
+                        /*<![CDATA[*/
+                        body {
+                                background-color: #fff;
+                                color: #000;
+                                font-size: 1.1em;
+                                font-family: "Red Hat Text", Helvetica, Tahoma, sans-serif;
+                                margin: 0;
+                                padding: 0;
+                border-bottom: 30px solid black;
+                                min-height: 100vh;
+                                box-sizing: border-box;
+                        }
+                        :link {
+                                color: #c00;
+                        }
+                        :visited {
+                                color: #c00;
+                        }
+                        a:hover {
+                                color: #f50;
+                        }
+                        h1 {
+                                text-align: left;
+                                margin: 0;
+                                margin-bottom: .6em;
+                                padding: 1em 2em 1.5em 2em;
+                                background-color: black;
+                                color: #fff;
+                                font-weight: normal;
+                                font-size: 2.5em;
+                                border-bottom: 2px solid #000;
+                        }
+            h1 img {
+                border: none;
+                margin-bottom: .4em;
+            }
+                        h1 strong {
+                                font-weight: bold;
+                        }
+                        h2 {
+                                font-size: 1.1em;
+                                font-weight: bold;
+                        }
+                        hr {
+                                display: none;
+                        }
+                        .content {
+                                padding: 1em 5em;
+                        }
+                        .content-columns {
+                                /* Setting relative positioning allows for
+                                absolute positioning for sub-classes */
+                                position: relative;
+                                padding-top: 1em;
+                display: flex;
+                                flex-wrap: wrap;
+                        }
+                        .content-column-left {
+                                /* Value for IE/Win; will be overwritten for other browsers */
+                                width: 47%;
+                                padding: 15px 30px;
+                                margin-right: 30px;
+                                padding-bottom: 2em;
+                                margin-bottom: 1em;
+                                flex: 1;
+                        }
+                        .content-column-left hr {
+                                display: none;
+                        }
+                        .content-column-right {
+                                /* Values for IE/Win; will be overwritten for other browsers */
+                                width: 47%;
+                                padding: 15px 30px;
+                                padding-bottom: 2em;
+                margin-right: 30px;
+                                margin-bottom: 1em;
+                                flex: 1;
+                        }
+                        .content-columns>.content-column-left, .content-columns>.content-column-right {
+                                /* Non-IE/Win */
+                border: 1px solid #d2d2d2;
+                                border-radius: 3px;
+                                box-sizing: border-box;
+                        }
+                        .logos {
+                                text-align: left;
+                                margin-top: 2em;
+                        }
+            .logos a img {
+                padding-right: 1.5em;
+                margin-right: 1.5em;
+                border-right: 1px solid #d2d2d2;
+            }
+                        img {
+                                border: 2px solid #fff;
+                                padding: 2px;
+                                margin: 2px;
+                        }
+                        a:hover img {
+                                border: 2px solid #f50;
+                        }
+                        .footer {
+                            font-size: xx-small;
+                padding: 0 10em;
+                            padding-bottom: 5em;
+                        }
+
+            /* Responsive layout */
+            @media (max-width: 800px) {
+                .content-column-right, .content-column-left {
+                flex: 100%;
+                }
+            }
+                        /*]]>*/
+                </style>
+        </head>
+
+        <body>
+                <h1>
+            <img src="system_noindex_logo.png" alt="Red Hat Logo" /><br />
+            Red Hat Enterprise Linux <strong>Test Page</strong>
+        </h1>
+
+                <div class="content">
+                        <div class="content-middle">
+                                <p>This page is used to test the proper operation of the HTTP server after it has been installed. If you can read this page, it means that the HTTP server installed at this site is working properly.</p>
+                        </div>
+                        <hr />
+
+                        <div class="content-columns">
+                                <div class="content-column-left">
+                                        <h2>If you are a member of the general public:</h2>
+
+                                        <p>The fact that you are seeing this page indicates that the website you just visited is either experiencing problems, or is undergoing routine maintenance.</p>
+
+                                        <p>If you would like to let the administrators of this website know that you've seen this page instead of the page you expected, you should send them e-mail. In general, mail sent to the name "webmaster" and directed to the website's domain should reach the appropriate person.</p>
+
+                                        <p>For example, if you experienced problems while visiting www.example.com, you should send e-mail to "webmaster@example.com".</p>
+
+                                        <p>For information on Red Hat Enterprise Linux, please visit the <a href="http://www.redhat.com/">Red Hat, Inc. website</a>. The documentation for Red Hat Enterprise Linux is <a href="http://www.redhat.com/docs/manuals/enterprise/">available on the Red Hat, Inc. website</a>.</p>
+                                        <hr />
+                                </div>
+
+                                <div class="content-column-right">
+                                        <h2>If you are the website administrator:</h2>
+
+                                        <p>You may now add content to the webroot directory. Note
+                                        that until you do so, people visiting your website will see
+                                        this page, and not your content.</p>
+
+                                        <p>For systems using the Apache HTTP Server:
+                                        You may now add content to the directory <tt>/var/www/html/</tt>. Note that until you do so, people visiting your website will see this page, and not your content. To prevent this page from ever being used, follow the instructions in the file <tt>/etc/httpd/conf.d/welcome.conf</tt>.</p>
+
+                                        <p>For systems using NGINX:
+                                        You should now put your content in a location of your
+                                        choice and edit the <code>root</code> configuration directive
+                                        in the <strong>nginx</strong> configuration file
+                                        <code>/etc/nginx/nginx.conf</code>.</p>
+
+                                        <div class="logos">
+                                                <a href="https://access.redhat.com/products/red-hat-enterprise-linux"><img src= "/icons/poweredby.png" alt="[ Powered by Red Hat Enterprise Linux ]" /></a>
+                                                <img src= "poweredby.png" alt="[ Powered by Red Hat Enterprise Linux ]" />
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        <div class="footer">
+                <a href="https://apache.org">Apache&trade;</a> is a registered trademark of <a href="https://apache.org">the Apache Software Foundation</a> in the United States and/or other countries.
+        <br />
+                <a href="https://nginx.com">NGINX&trade;</a> is a registered trademark of <a href="https://www.f5.com">F5 Networks, Inc.</a>.
+        </div>
+        </body>
+</html>[ec2-user@ip-172-31-22-221 devteam]$ sudo systemctl stop httpd
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ sudo systemctl status httpd | more
+○ httpd.service - The Apache HTTP Server
+     Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled; preset: dis
+abled)
+     Active: inactive (dead) since Sat 2025-05-17 14:21:13 UTC; 8s ago
+   Duration: 2min 2.911s
+       Docs: man:httpd.service(8)
+    Process: 4661 ExecStart=/usr/sbin/httpd $OPTIONS -DFOREGROUND (code=exited,
+status=0/SUCCESS)
+   Main PID: 4661 (code=exited, status=0/SUCCESS)
+     Status: "Total requests: 1; Idle/Busy workers 100/0;Requests/sec: 0.0084; B
+ytes served/sec:  52 B/sec"
+        CPU: 135ms
+
+May 17 14:19:09 ip-172-31-22-221.ec2.internal systemd[1]: Starting The Apache HT
+TP Server...
+May 17 14:19:09 ip-172-31-22-221.ec2.internal systemd[1]: Started The Apache HTT
+P Server.
+May 17 14:19:09 ip-172-31-22-221.ec2.internal httpd[4661]: Server configured, li
+stening on: port 80
+May 17 14:21:12 ip-172-31-22-221.ec2.internal systemd[1]: Stopping The Apache HT
+TP Server...
+May 17 14:21:13 ip-172-31-22-221.ec2.internal systemd[1]: httpd.service: Deactiv
+ated successfully.
+May 17 14:21:13 ip-172-31-22-221.ec2.internal systemd[1]: Stopped The Apache HTT
+P Server.
+[ec2-user@ip-172-31-22-221 devteam]$ sudo systemctl status httpd | more
+○ httpd.service - The Apache HTTP Server
+     Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled; preset: dis
+abled)
+     Active: inactive (dead) since Sat 2025-05-17 14:21:13 UTC; 20s ago
+   Duration: 2min 2.911s
+       Docs: man:httpd.service(8)
+    Process: 4661 ExecStart=/usr/sbin/httpd $OPTIONS -DFOREGROUND (code=exited,
+status=0/SUCCESS)
+   Main PID: 4661 (code=exited, status=0/SUCCESS)
+     Status: "Total requests: 1; Idle/Busy workers 100/0;Requests/sec: 0.0084; B
+ytes served/sec:  52 B/sec"
+        CPU: 135ms
+
+May 17 14:19:09 ip-172-31-22-221.ec2.internal systemd[1]: Starting The Apache HT
+TP Server...
+May 17 14:19:09 ip-172-31-22-221.ec2.internal systemd[1]: Started The Apache HTT
+P Server.
+May 17 14:19:09 ip-172-31-22-221.ec2.internal httpd[4661]: Server configured, li
+stening on: port 80
+May 17 14:21:12 ip-172-31-22-221.ec2.internal systemd[1]: Stopping The Apache HT
+TP Server...
+May 17 14:21:13 ip-172-31-22-221.ec2.internal systemd[1]: httpd.service: Deactiv
+ated successfully.
+May 17 14:21:13 ip-172-31-22-221.ec2.internal systemd[1]: Stopped The Apache HTT
+P Server.
+[ec2-user@ip-172-31-22-221 devteam]$
+
+============
+
+4. System Services
+
+============
+
+[ec2-user@ip-172-31-22-221 devteam]$ sudo systemctl list-units --type=service
+  UNIT                                                  LOAD   ACTIVE SUB     D>
+  auditd.service                                        loaded active running S>
+  chronyd.service                                       loaded active running N>
+  cloud-config.service                                  loaded active exited  A>
+  cloud-final.service                                   loaded active exited  E>
+  cloud-init-local.service                              loaded active exited  I>
+  cloud-init.service                                    loaded active exited  I>
+  crond.service                                         loaded active running C>
+  dbus-broker.service                                   loaded active running D>
+  dracut-shutdown.service                               loaded active exited  R>
+  getty@tty1.service                                    loaded active running G>
+  kdump.service                                         loaded active exited  C>
+  kmod-static-nodes.service                             loaded active exited  C>
+  NetworkManager-wait-online.service                    loaded active exited  N>
+  NetworkManager.service                                loaded active running N>
+  nis-domainname.service                                loaded active exited  R>
+  polkit.service                                        loaded active running A>
+  rh-cloud-firstboot.service                            loaded active exited  R>
+  rhsmcertd.service                                     loaded active running E>
+  rsyslog.service                                       loaded active running S>
+  serial-getty@ttyS0.service                            loaded active running S>
+  sshd.service                                          loaded active running O>
+  systemd-boot-update.service                           loaded active exited  A>
+  systemd-fsck@dev-disk-by\x2duuid-7B77\x2d95E7.service loaded active exited  F>
+  systemd-fsck@dev-xvda2.service                        loaded active exited  F>
+  systemd-journal-flush.service                         loaded active exited  F>
+  systemd-journald.service                              loaded active running J>
+  systemd-logind.service                                loaded active running U>
+  systemd-modules-load.service                          loaded active exited  L>
+  systemd-network-generator.service                     loaded active exited  G>
+  systemd-random-seed.service                           loaded active exited  L>
+  systemd-remount-fs.service                            loaded active exited  R>
+  systemd-sysctl.service                                loaded active exited  A>
+  systemd-tmpfiles-setup-dev.service                    loaded active exited  C>
+  systemd-tmpfiles-setup.service                        loaded active exited  C>
+  systemd-udev-trigger.service                          loaded active exited  C>
+  systemd-udevd.service                                 loaded active running R>
+  systemd-update-utmp.service                           loaded active exited  R>
+  systemd-user-sessions.service                         loaded active exited  P>
+  tuned.service                                         loaded active running D>
+  user-runtime-dir@1000.service                         loaded active exited  U>
+  user@1000.service                                     loaded active running U>
+
+LOAD   = Reflects whether the unit definition was properly loaded.
+ACTIVE = The high-level unit activation state, i.e. generalization of SUB.
+SUB    = The low-level unit activation state, values depend on unit type.
+41 loaded units listed. Pass --all to see loaded but inactive units, too.
+To show all installed unit files use 'systemctl list-unit-files'.
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ sudo systemctl start httpd
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ sudo systemctl enable httpd
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ sudo systemctl status httpd | more
+● httpd.service - The Apache HTTP Server
+     Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled; preset: dis
+abled)
+     Active: active (running) since Sat 2025-05-17 14:25:00 UTC; 1min 9s ago
+       Docs: man:httpd.service(8)
+   Main PID: 4913 (httpd)
+     Status: "Total requests: 0; Idle/Busy workers 100/0;Requests/sec: 0; Bytes
+served/sec:   0 B/sec"
+      Tasks: 177 (limit: 4360)
+     Memory: 23.4M
+        CPU: 88ms
+     CGroup: /system.slice/httpd.service
+             ├─4913 /usr/sbin/httpd -DFOREGROUND
+             ├─4914 /usr/sbin/httpd -DFOREGROUND
+             ├─4915 /usr/sbin/httpd -DFOREGROUND
+             ├─4916 /usr/sbin/httpd -DFOREGROUND
+             └─4917 /usr/sbin/httpd -DFOREGROUND
+
+May 17 14:25:00 ip-172-31-22-221.ec2.internal systemd[1]: Starting The Apache HT
+TP Server...
+May 17 14:25:00 ip-172-31-22-221.ec2.internal systemd[1]: Started The Apache HTT
+P Server.
+May 17 14:25:00 ip-172-31-22-221.ec2.internal httpd[4913]: Server configured, li
+stening on: port 80
+[ec2-user@ip-172-31-22-221 devteam]$ sudo systemctl stop httpd
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ sudo systemctl status httpd | more
+○ httpd.service - The Apache HTTP Server
+     Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled; preset: dis
+abled)
+     Active: inactive (dead) since Sat 2025-05-17 14:26:29 UTC; 4s ago
+   Duration: 1min 28.427s
+       Docs: man:httpd.service(8)
+    Process: 4913 ExecStart=/usr/sbin/httpd $OPTIONS -DFOREGROUND (code=exited,
+status=0/SUCCESS)
+   Main PID: 4913 (code=exited, status=0/SUCCESS)
+     Status: "Total requests: 0; Idle/Busy workers 100/0;Requests/sec: 0; Bytes
+served/sec:   0 B/sec"
+        CPU: 108ms
+
+May 17 14:25:00 ip-172-31-22-221.ec2.internal systemd[1]: Starting The Apache HT
+TP Server...
+May 17 14:25:00 ip-172-31-22-221.ec2.internal systemd[1]: Started The Apache HTT
+P Server.
+May 17 14:25:00 ip-172-31-22-221.ec2.internal httpd[4913]: Server configured, li
+stening on: port 80
+May 17 14:26:28 ip-172-31-22-221.ec2.internal systemd[1]: Stopping The Apache HT
+TP Server...
+May 17 14:26:29 ip-172-31-22-221.ec2.internal systemd[1]: httpd.service: Deactiv
+ated successfully.
+May 17 14:26:29 ip-172-31-22-221.ec2.internal systemd[1]: Stopped The Apache HTT
+P Server.
+[ec2-user@ip-172-31-22-221 devteam]$ sudo systemctl restart httpd
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ sudo systemctl disable httpd
+Removed "/etc/systemd/system/multi-user.target.wants/httpd.service".
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ sudo journalctl -u httpd
+May 17 14:19:09 ip-172-31-22-221.ec2.internal systemd[1]: Starting The Apache H>
+May 17 14:19:09 ip-172-31-22-221.ec2.internal systemd[1]: Started The Apache HT>
+May 17 14:19:09 ip-172-31-22-221.ec2.internal httpd[4661]: Server configured, l>
+May 17 14:21:12 ip-172-31-22-221.ec2.internal systemd[1]: Stopping The Apache H>
+May 17 14:21:13 ip-172-31-22-221.ec2.internal systemd[1]: httpd.service: Deacti>
+May 17 14:21:13 ip-172-31-22-221.ec2.internal systemd[1]: Stopped The Apache HT>
+May 17 14:25:00 ip-172-31-22-221.ec2.internal systemd[1]: Starting The Apache H>
+May 17 14:25:00 ip-172-31-22-221.ec2.internal systemd[1]: Started The Apache HT>
+May 17 14:25:00 ip-172-31-22-221.ec2.internal httpd[4913]: Server configured, l>
+May 17 14:26:28 ip-172-31-22-221.ec2.internal systemd[1]: Stopping The Apache H>
+May 17 14:26:29 ip-172-31-22-221.ec2.internal systemd[1]: httpd.service: Deacti>
+May 17 14:26:29 ip-172-31-22-221.ec2.internal systemd[1]: Stopped The Apache HT>
+May 17 14:26:54 ip-172-31-22-221.ec2.internal systemd[1]: Starting The Apache H>
+May 17 14:26:54 ip-172-31-22-221.ec2.internal systemd[1]: Started The Apache HT>
+May 17 14:26:54 ip-172-31-22-221.ec2.internal httpd[5162]: Server configured, l>
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ sudo systemctl reload httpd
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$ sudo systemctl --failed
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+0 loaded units listed.
+[ec2-user@ip-172-31-22-221 devteam]$
+[ec2-user@ip-172-31-22-221 devteam]$
+
+============
+
+5. 
+
 
