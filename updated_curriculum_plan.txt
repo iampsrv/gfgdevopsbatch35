@@ -1,0 +1,2 @@
+ECS and ECR: Week 2 ---> Week 4
+CloudFormation Week 2 ---> Week 10
