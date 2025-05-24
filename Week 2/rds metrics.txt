@@ -1,0 +1,97 @@
+1. BurstBalance
+Unit: Percent
+Description: Represents the percentage of CPU credits available for burstable performance instances (e.g., T3, T4g).
+
+Higher value = More CPU credits available.
+
+Watch for: Dropping values could indicate sustained high CPU usage.
+
+2. CheckpointLag
+Unit: Seconds
+
+Description: The amount of time a replication source database is ahead of a read replica (used in PostgreSQL/Aurora).
+
+Higher value = More lag; replication is falling behind.
+
+Watch for: Consistently high values indicate replication issues.
+
+3. CPUCreditBalance
+Unit: Count
+
+Description: Number of unused CPU credits accumulated for burstable instances.
+
+Used to burst when your instance needs more CPU.
+
+Low balance = Instance may be throttled.
+
+4. CPUCreditUsage
+Unit: Count
+
+Description: Number of CPU credits consumed during a given period.
+
+High usage = Instance has been bursting.
+
+Important for performance analysis of T-series instances.
+
+5. CPUSurplusCreditBalance
+Unit: Count
+
+Description: Number of surplus CPU credits earned (used in T3/T4 instances).
+
+Only relevant when unlimited burst mode is on.
+
+6. CPUSurplusCreditsCharged
+Unit: Count
+
+Description: Number of surplus CPU credits charged to the account.
+
+Indicates if you're paying for over-bursting (when in unlimited mode).
+
+7. CPUUtilization
+Unit: Percent
+
+Description: Percentage of CPU being used.
+
+Most critical metric for general health.
+
+High values over time may mean you need to scale.
+
+8. DatabaseConnections
+Unit: Count
+
+Description: Number of active client connections to the database.
+
+Important for connection pool sizing and scaling.
+
+9. DBLoad
+Unit: Custom/Amazon-defined
+
+Description: Total database load (Aurora only).
+
+Represents all active sessions (CPU and I/O waits).
+
+Useful for workload analysis.
+
+10. DBLoadCPU
+Unit: Custom
+
+Description: Portion of DBLoad that is CPU-related.
+
+Indicates CPU contention.
+
+11. DBLoadNonCPU
+Unit: Custom
+
+Description: Portion of DBLoad due to non-CPU waits (e.g., I/O, locks).
+
+High value = Potential performance bottlenecks not related to CPU.
+
+12. DBLoadRelativeToNumVCPUs
+Unit: Custom
+
+Description: Load normalized by the number of vCPUs.
+
+> 1 = DB is overloading its available vCPU resources.
+
+Helps assess if scaling is needed.
+

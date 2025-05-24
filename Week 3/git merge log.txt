@@ -1,0 +1,86 @@
+git merge
+
+commit 15e953e6ebf70a6b07ab174c305e37e721e20312 (HEAD -> master)
+Merge: b662a9d 366b79a
+Author: iampsrv <iampsrv@gmail.com>
+Date:   Sat Dec 7 22:26:52 2024 +0530
+
+    Merge branch 'fb'
+
+commit b662a9d6c6bf5c88465de29f7c0bcaaf9026cd19
+Author: iampsrv <iampsrv@gmail.com>
+Date:   Sat Dec 7 22:25:20 2024 +0530
+
+    added m3.txt file
+
+commit 33afe1e7e802c5b73d41d3bb72b64338e7b60813
+Author: iampsrv <iampsrv@gmail.com>
+Date:   Sat Dec 7 22:25:09 2024 +0530
+
+    added m2.txt file
+
+commit 06771ec8320a59cd6478fc9ccfa4515955c3b09c
+Author: iampsrv <iampsrv@gmail.com>
+Date:   Sat Dec 7 22:24:58 2024 +0530
+
+    added m1.txt file
+
+commit 366b79a0517e8d5b01314d7d674e055640168555 (fb)
+Author: iampsrv <iampsrv@gmail.com>
+Date:   Sat Dec 7 22:24:24 2024 +0530
+
+:...skipping...
+commit 15e953e6ebf70a6b07ab174c305e37e721e20312 (HEAD -> master)
+Merge: b662a9d 366b79a
+Author: iampsrv <iampsrv@gmail.com>
+Date:   Sat Dec 7 22:26:52 2024 +0530
+
+    Merge branch 'fb'
+
+commit b662a9d6c6bf5c88465de29f7c0bcaaf9026cd19
+Author: iampsrv <iampsrv@gmail.com>
+Date:   Sat Dec 7 22:25:20 2024 +0530
+
+    added m3.txt file
+
+commit 33afe1e7e802c5b73d41d3bb72b64338e7b60813
+Author: iampsrv <iampsrv@gmail.com>
+Date:   Sat Dec 7 22:25:09 2024 +0530
+
+    added m2.txt file
+
+commit 06771ec8320a59cd6478fc9ccfa4515955c3b09c
+Author: iampsrv <iampsrv@gmail.com>
+Date:   Sat Dec 7 22:24:58 2024 +0530
+
+    added m1.txt file
+
+commit 366b79a0517e8d5b01314d7d674e055640168555 (fb)
+Author: iampsrv <iampsrv@gmail.com>
+Date:   Sat Dec 7 22:24:24 2024 +0530
+
+    added f3.txt file
+
+commit af3b414e90e4c8be5add6fd68f64b3dc7975da88
+Author: iampsrv <iampsrv@gmail.com>
+Date:   Sat Dec 7 22:23:35 2024 +0530
+
+    added f2.txt file
+
+commit b46c098cebc1e9ef505584f744ba1025ba3df90e
+Author: iampsrv <iampsrv@gmail.com>
+Date:   Sat Dec 7 22:23:24 2024 +0530
+
+    added f1.txt file
+
+commit 6c44a9038ff872d8a1d240e3af0a006d97853024
+Author: iampsrv <iampsrv@gmail.com>
+Date:   Sat Dec 7 22:22:31 2024 +0530
+
+    updated master txt file
+
+commit e5402260d462017fc87521ad3e88aae76364dd89
+Author: iampsrv <iampsrv@gmail.com>
+Date:   Sat Dec 7 22:21:58 2024 +0530
+
+    master file

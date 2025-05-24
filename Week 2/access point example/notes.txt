@@ -1,0 +1,90 @@
+🔹 Step 1: Create the S3 Bucket
+Go to AWS S3 Console
+Click "Create bucket"
+Set the bucket name:
+yetanotherrandombucketbyps
+Keep default settings (you can uncheck Block Public Access if needed)
+Click "Create bucket"
+
+🔹 Step 2: Attach Bucket Policy (restrict to Access Points)
+Go to the bucket → Permissions tab → Bucket policy
+Paste this policy (bucket_policy.json):
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": { "AWS": "*" },
+      "Action": "*",
+      "Resource": [
+        "arn:aws:s3:::yetanotherrandombucketbyps",
+        "arn:aws:s3:::yetanotherrandombucketbyps/*"
+      ],
+      "Condition": {
+        "StringEquals": {
+          "s3:DataAccessPointAccount": "686766985335"
+        }
+      }
+    }
+  ]
+}
+✅ This blocks direct S3 access and only allows access via Access Points owned by your AWS account.
+
+🔹 Step 3: Create the Access Point
+Go to S3 Console > Access Points > Create access point
+Set name: ps-user-ap
+Bucket: select yetanotherrandombucketbyps
+Network origin: choose Internet (or VPC if needed)
+Click "Create access point"
+
+
+🔹 Step 4: Attach Access Point Policy
+Open ps-user-ap > go to Permissions
+
+Paste this policy (access_point_policy.json):
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Statement1",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::686766985335:user/ps_user"
+      },
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "Resource": "arn:aws:s3:us-east-1:686766985335:accesspoint/ps-user-ap/object/folder1/*"
+    }
+  ]
+}
+✅ This grants the IAM user permission to upload/download files in folder1/ via this access point only.
+
+🔹 Step 5: Create or Modify the IAM User (ps_user)
+Go to IAM Console > Users
+
+Create user or select ps_user
+
+Attach this inline policy (iam_user_policy.json):
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListAllMyBuckets",
+        "s3:GetAccessPoint",
+        "s3:ListAccessPoints",
+        "s3:ListMultiRegionAccessPoints",
+        "s3:ListBucket"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+✅ This enables the user to list and access buckets and access points.
+
