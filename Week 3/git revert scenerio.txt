@@ -1,0 +1,39 @@
+If you've made the commits in this order:
+
+c1 → c2 → c3 → c4
+...and you revert c3, here's what happens:
+
+🔄 What git revert c3 Does:
+It creates a new commit (let’s call it c5) that undoes the changes made in c3, without touching c4.
+
+The history now looks like this:
+
+c1 → c2 → c3 → c4 → c5
+c5 does not delete c3 — it just adds a commit that reverses its effects.
+
+📌 Key Points:
+✅ c3 and c4 still exist in history.
+
+✅ c5 is a "mirror" of c3 (reverting its changes).
+
+✅ This is safe for shared branches (no history rewriting).
+
+⚠️ If c4 depended on something in c3, the revert might break things. You'll need to resolve conflicts manually in such cases.
+
+Example
+Assume:
+
+c3 adds a line: print("Hello from c3")
+
+c4 adds a new function.
+
+Then:
+
+git revert c3
+Adds a commit c5 that removes print("Hello from c3").
+
+💡 If You Want to "Go Back To c3" Instead
+Use git reset if you want to move HEAD back to c3, like so:
+git reset --hard <commit-hash-of-c3>
+But this rewrites history, and you should not do this on shared branches.
+

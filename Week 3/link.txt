@@ -1,0 +1,2 @@
+https://github.com/github/gitignore
+https://readme.so/editor
