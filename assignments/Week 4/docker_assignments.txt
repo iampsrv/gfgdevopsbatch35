@@ -2,6 +2,8 @@
 02. Create dockerfile
 03. Build custom docker image
 04. Push custom docker image to dockerhub
+04.1 Test all docker commands shared in file
+04.2 Run container inside ec2 instance
 
 05. Create a Docker Compose file (docker-compose.yml) to define a multi-container application with at least two services (e.g., web server and database).
 06. Create a user-defined bridge network using "docker network create
