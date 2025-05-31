@@ -1,0 +1,27 @@
+Docker uses both namespaces and cgroups, which are features of the Linux kernel, to create and manage containers. Namespaces provide isolation for containers, while cgroups control resource usage. Think of namespaces as isolating different aspects of a container, like the process tree, networking, and file system, so they appear to have their own instance of those resources. Cgroups, on the other hand, ensure containers don't consume more resources than they're allotted, preventing one container from impacting others or the host system. 
+Here's a more detailed breakdown:
+Namespaces:
+Isolation:
+Namespaces create isolated environments for containers, making them appear to have their own instance of certain system resources. 
+Types:
+Docker utilizes various types of namespaces, including: 
+PID: Separates process IDs, making processes in different containers unaware of each other's process trees. 
+Network: Isolates network interfaces, creating private routing tables, IP addresses, etc., for each container. 
+IPC: Separates inter-process communication resources like message queues, ensuring containers don't interfere with each other's communication. 
+Mount: Creates independent mount points, so containers have their own file system views. 
+User: Isolates user and group IDs, providing further security and control. 
+Purpose:
+Namespaces prevent processes in one container from interfering with processes in other containers or the host system. 
+Cgroups:
+Resource Management:
+Cgroups provide a mechanism for controlling and limiting the resources (CPU, memory, I/O, etc.) available to containers. 
+Enforcement:
+Docker uses cgroups to ensure containers don't consume more resources than they're allocated, preventing resource contention and performance issues. 
+Hierarchical Structure:
+Cgroups can be organized hierarchically, allowing for flexible resource allocation across containers and groups of containers. 
+Purpose:
+Cgroups ensure that containers don't monopolize system resources, protecting the host and other containers from performance degradation. 
+In Summary:
+Namespaces provide isolation, creating separate environments for containers. 
+Cgroups control resource usage, preventing containers from consuming excessive resources. 
+Docker utilizes both namespaces and cgroups to create and manage containers effectively. 
