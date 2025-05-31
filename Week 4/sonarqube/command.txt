@@ -1,0 +1,10 @@
+docker-compose up -d
+
+wsl -d docker-desktop sysctl -w vm.max_map_count=262144
+
+pip install pytest pytest-cov
+
+pytest --cov=app --cov-report=xml
+pytest --junitxml=test-reports.xml
+
+docker run --rm -e SONAR_HOST_URL="http://host.docker.internal:9000" -e SONAR_LOGIN="sqp_f022fd78c249a59f5b3846de07aa9975cf8e8518" -v "%cd%:/usr/src" sonarsource/sonar-scanner-cli -Dsonar.projectKey=my-python-project -Dsonar.sources=.

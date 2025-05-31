@@ -1,0 +1,32 @@
+# Use a lightweight, specific version of Python image to ensure stability and security
+FROM python:3.10-slim-buster
+
+# Set environment variables to prevent Python from writing .pyc files and buffering outputs
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Create and set the application working directory with appropriate permissions
+WORKDIR /application
+
+Copy only the requirements file first to leverage Docker layer caching for dependency installation
+COPY requirements.txt /application/
+
+# Install dependencies as a non-root user where possible
+RUN apt-get update && apt-get install -y --no-install-recommends
+&& pip install --upgrade pip
+&& pip install --no-cache-dir -r requirements.txt
+&& apt-get clean
+&& rm -rf /var/lib/apt/lists/*
+
+# Copy the rest of the application files
+COPY . /application/
+
+# Expose only the necessary port
+EXPOSE 8080
+
+# Run the application as a non-root user for enhanced security
+RUN useradd -m appuser
+USER appuser
+
+# Use CMD to specify the command to run the application
+CMD ["python", "app.py"]
