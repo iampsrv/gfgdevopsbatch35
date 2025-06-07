@@ -1,0 +1,32 @@
+Task 1: Automate user and group administration
+Write a shell script to automate tasks like creating, deleting, and listing users and groups on a RedHat Linux system.
+
+Task 2: File system management
+Develop shell scripts to:
+Create directories
+Set permissions
+Manage disk usage
+
+Task 3: System performance monitoring
+Create a shell script to monitor:
+CPU usage
+Memory usage
+
+-------------------------------------------------
+Task 4: Version control with Git
+Initialize a Git repository.
+Commit the shell scripts developed in Session 9.
+Push them to a GitHub repository.
+
+Task 5: Docker containerization
+Write a Dockerfile that containerizes the shell scripting application.
+
+Task 6: Build and test the container
+Build the Docker image.
+Run the container and ensure the scripts can be executed inside it.
+
+
+-----------------
+
+
+Sonarqube
