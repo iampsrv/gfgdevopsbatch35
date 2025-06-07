@@ -7,4 +7,18 @@ pip install pytest pytest-cov
 pytest --cov=app --cov-report=xml
 pytest --junitxml=test-reports.xml
 
-docker run --rm -e SONAR_HOST_URL="http://host.docker.internal:9000" -e SONAR_LOGIN="sqp_f022fd78c249a59f5b3846de07aa9975cf8e8518" -v "%cd%:/usr/src" sonarsource/sonar-scanner-cli -Dsonar.projectKey=my-python-project -Dsonar.sources=.
+Gfg2025@abcd
+
+docker run --rm -e SONAR_HOST_URL="http://host.docker.internal:9000" -e SONAR_LOGIN="sqp_541f902a9c10737d01d995235042a51d8003421d" -v "%cd%:/usr/src" sonarsource/sonar-scanner-cli -Dsonar.projectKey=my-python-project -Dsonar.sources=.
+
+
+
+docker run --rm -e SONAR_HOST_URL="http://host.docker.internal:9000" -v "%cd%:/usr/src" sonarsource/sonar-scanner-cli -Dsonar.projectKey=mypythonproject -Dsonar.sources=. -Dsonar.login=sqp_5e11fcb39270842005d51128d7df7b2c9a4afd75
+
+
+
+docker run --rm -e SONAR_HOST_URL="http://host.docker.internal:9000" -v "%cd%:/usr/src" sonarsource/sonar-scanner-cli -Dsonar.projectKey=mypythonproject -Dsonar.sources=. -Dsonar.login=sqp_5e11fcb39270842005d51128d7df7b2c9a4afd75 -Dsonar.python.coverage.reportPaths=coverage.xml
+
+
+docker run --rm -e SONAR_HOST_URL="http://host.docker.internal:9000" -v "%cd%:/usr/src" sonarsource/sonar-scanner-cli -Dsonar.projectKey=mypythonproject -Dsonar.sources=. -Dsonar.login=sqp_5e11fcb39270842005d51128d7df7b2c9a4afd75 -Dsonar.python.coverage.reportPaths=coverage.xml -Dsonar.tests=my_python_project/tests -Dsonar.exclusions=**/tests/**/*
+

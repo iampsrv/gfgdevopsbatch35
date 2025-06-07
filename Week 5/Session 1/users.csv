@@ -1,0 +1,4 @@
+username,password,group
+alice,pass123,developers
+bob,pass456,testers
+charlie,pass789,admins

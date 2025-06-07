@@ -1,0 +1,2 @@
+docker build -t hello-world-demo .
+docker run hello-world-demo
