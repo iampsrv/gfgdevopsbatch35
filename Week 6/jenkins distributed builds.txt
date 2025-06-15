@@ -1,0 +1,11 @@
+In Jenkins, "distributed builds" refers to a setup where a central Jenkins master server distributes build jobs across multiple slave machines (also called agents), allowing for parallel execution of build tasks on different machines, effectively distributing the workload and potentially speeding up the build process significantly; this is achieved by configuring a "master-slave" architecture within Jenkins, where the master manages the jobs and the slaves execute them based on available resources. 
+Key points about distributed builds in Jenkins:
+Benefits:
+Faster build times: By distributing builds across multiple machines, you can execute different parts of a build process simultaneously, significantly reducing overall build duration, especially for large projects with many test cases. 
+Scalability: You can easily add or remove slave machines as needed to accommodate fluctuating build demands. 
+Environment isolation: Run builds on specific environments by dedicating slave machines to different operating systems or configurations. 
+How to set up:
+Access the "Manage Jenkins" section: Go to "Manage Jenkins" in your Jenkins interface. 
+Manage nodes: Navigate to "Manage Nodes" and click "New Node" to add a new slave machine. 
+Configure slave details: Provide the slave machine's hostname, credentials, and specify the number of executors (concurrent builds allowed). 
+Assign jobs to nodes: When creating a Jenkins job, select the desired slave node where you want the build to run. 

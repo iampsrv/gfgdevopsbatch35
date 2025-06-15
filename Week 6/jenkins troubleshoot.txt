@@ -1,0 +1,14 @@
+Error: Failed to start jenkins.service - Jenkins Continuous Integration Server.
+Dec 22 14:51:48 ip-172-31-31-88 systemd[1]: jenkins.service: Start request repeated too quickly.
+Dec 22 14:51:48 ip-172-31-31-88 systemd[1]: jenkins.service: Failed with result 'exit-code'.
+
+Open Jenkins configuration file:
+
+sudo vi /etc/init.d/jenkins
+Finally, append path to the new java executable (line 16):
+
+PATH=/bin:/usr/bin:/sbin:/usr/sbin:/usr/lib/jvm/java-17-openjdk-amd64/bin/ (not working)
+
+PATH=/usr/lib/jvm/java-17-openjdk-amd64/bin/
+
+source: https://stackoverflow.com/questions/39621263/jenkins-fails-when-running-service-start-jenkins
