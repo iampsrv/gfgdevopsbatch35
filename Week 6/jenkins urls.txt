@@ -1,0 +1,3 @@
+https://www.jenkins.io/doc/tutorials/tutorial-for-installing-jenkins-on-AWS/
+https://www.jenkins.io/doc/book/installing/linux/#debianubuntu
+https://community.jenkins.io/t/jenkins-installation-error/16610
