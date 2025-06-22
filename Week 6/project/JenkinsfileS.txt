@@ -1,0 +1,47 @@
+node {
+    def DOCKER_IMAGE = "batch23appnew"
+    def DOCKER_REGISTRY = "psrv3"
+    def IMAGE_TAG = "${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${env.BUILD_NUMBER}"
+
+    stage('Checkout') {
+        git 'https://github.com/iampsrv/simplivapp.git'
+    }
+
+    stage('Setup') {
+        sh '''
+            python3 -m venv .venv
+            . .venv/bin/activate
+            pip install --upgrade pip
+            pip install flask pytest
+        '''
+    }
+
+    stage('Test') {
+        sh '''
+            . .venv/bin/activate
+            pytest
+        '''
+    }
+
+    stage('Login to Docker Hub') {
+        withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
+            sh """
+                docker login -u ${DOCKER_REGISTRY} -p ${dockerhubpwd}
+            """
+        }
+        echo 'Login successfully'
+    }
+
+    stage('Build Docker Image') {
+        sh """
+            docker build -t ${IMAGE_TAG} .
+        """
+        echo "Docker image built successfully"
+        sh "docker images"
+    }
+
+    stage('Push Docker Image') {
+        sh "docker push ${IMAGE_TAG}"
+        echo "Docker image pushed successfully"
+    }
+}

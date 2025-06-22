@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building...'
+                // Simulate build task
+                sh 'sleep 2'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+                // Simulate test
+                sh 'sleep 1'
+            }
+        }
+    }
+
+    post {
+        always {
+            script {
+                discordSend(
+                    webhookURL: 'https://discord.com/api/webhooks/your_webhook_id/your_webhook_token',
+                    title: "Job: ${env.JOB_NAME}",
+                    description: "Build #${env.BUILD_NUMBER} finished with status: ${currentBuild.currentResult}",
+                    link: env.BUILD_URL,
+                    result: currentBuild.currentResult
+                )
+            }
+        }
+    }
+}

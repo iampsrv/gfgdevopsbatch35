@@ -1,0 +1,22 @@
+docker run -d --name jenkins -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+
+docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+
+docker exec -it jenkins java -version
+
+docker exec -it jenkins bash
+readlink -f $(which java)  # This shows the actual JDK path
+
+Use a Tool Installer (inside Jenkins)
+Jenkins can automatically download and install Maven if you configure it properly.
+Steps:
+Go to Jenkins Dashboard > Manage Jenkins > Global Tool Configuration.
+Under Maven, click "Add Maven".
+Give it a name (e.g., Maven 3.8.6) – this must match the name used in Jenkinsfile.
+Check “Install automatically”.
+Select a version (e.g., 3.8.6).
+This approach doesn’t require Maven installed in the Docker image – Jenkins downloads it when needed.
+docker exec -it jenkins mvn -version
+
+
+

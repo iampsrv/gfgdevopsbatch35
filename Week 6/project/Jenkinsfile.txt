@@ -1,0 +1,17 @@
+pipeline {
+    agent { label 'slavenode' }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git url 'httpsgithub.comiampsrvcicdgfg35.git'
+            }
+        }
+
+        stage('Run Python Script') {
+            steps {
+                sh 'python3 hello.py'
+            }
+        }
+    }
+}

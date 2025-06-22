@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'REPO_URL', defaultValue: 'https://github.com/your-org/your-repo.git', description: 'Enter the GitHub repository URL')
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git "${params.REPO_URL}"
+            }
+        }
+
+        stage('Print Repo URL') {
+            steps {
+                echo "Cloned repository: ${params.REPO_URL}"
+            }
+        }
+    }
+}

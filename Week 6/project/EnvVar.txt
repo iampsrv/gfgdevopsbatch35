@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Print Environment Variables') {
+            steps {
+                echo "Job Name: ${env.JOB_NAME}"
+                echo "Build Number: ${env.BUILD_NUMBER}"
+                echo "Build ID: ${env.BUILD_ID}"
+                echo "Workspace: ${env.WORKSPACE}"
+                echo "Jenkins Home: ${env.JENKINS_HOME}"
+                echo "Node Name: ${env.NODE_NAME}"
+                echo "Executor Number: ${env.EXECUTOR_NUMBER}"
+                echo "User: ${env.BUILD_USER}" // Only works if you use the Build User plugin
+            }
+        }
+    }
+}

@@ -49,6 +49,8 @@ pipeline
             steps 
             {
                 git 'https://github.com/iampsrv/g-a-test.git'
+		python3 -m venv venv
+		source venv/bin/activate
                 sh "python3 factorial.py"
                 sh "pip install -r req.txt"
             }

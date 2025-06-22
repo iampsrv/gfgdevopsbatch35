@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'USERNAME', defaultValue: 'admin', description: 'Enter your username')
+        booleanParam(name: 'DEPLOY', defaultValue: true, description: 'Deploy after build?')
+        choice(name: 'ENV', choices: ['dev', 'staging', 'prod'], description: 'Select environment')
+    }
+
+    stages {
+        stage('Print Parameters') {
+            steps {
+                echo "Username: ${params.USERNAME}"
+                echo "Deploy: ${params.DEPLOY}"
+                echo "Environment: ${params.ENV}"
+            }
+        }
+    }
+}
