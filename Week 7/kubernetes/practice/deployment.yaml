@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myfirstpod-deploy
+  namespace: batch29
+  labels:
+    name: frontend
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      name: frontend
+  # strategy:
+  #   type: Recreate
+  template:
+    metadata:
+      labels:
+        name: frontend
+    spec:
+      containers:
+      - name: myfirstpodcontainer
+        image: psrv3/devopsbatch29
+        ports:
+        - containerPort: 5000
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: batch29
+  name: flask-app-service
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: 5000
+  selector:
+    name: frontend
