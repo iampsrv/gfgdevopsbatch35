@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weather-service
+  labels:
+    app: weather-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: weather-service
+  template:
+    metadata:
+      labels:
+        app: weather-service
+    spec:
+      containers:
+      - name: weather-service
+        image: psrv3/weather-service
+        ports:
+        - containerPort: 5002

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: time-service
+  labels:
+    app: time-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: time-service
+  template:
+    metadata:
+      labels:
+        app: time-service
+    spec:
+      containers:
+      - name: time-service
+        image: psrv3/time-service
+        ports:
+        - containerPort: 5001

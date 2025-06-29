@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flaskapp-ms
+  labels:
+    app: flaskapp-ms
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flaskapp-ms
+  template:
+    metadata:
+      labels:
+        app: flaskapp-ms
+    spec:
+      containers:
+      - name: flaskapp-ms
+        image: psrv3/flaskapp-ms
+        ports:
+        - containerPort: 5000

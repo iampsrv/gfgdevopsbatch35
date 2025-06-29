@@ -1,0 +1,3 @@
+Liveness probes determine when to restart a container. 
+
+Readiness probes determine when a container is ready to start accepting traffic.

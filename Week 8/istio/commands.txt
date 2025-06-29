@@ -1,0 +1,43 @@
+docker build -t flaskapp-ms -f Dockerfile.app .
+docker build -t time-service -f Dockerfile.time_svc .
+docker build -t weather-service -f Dockerfile.weather_svc .
+
+docker tag flaskapp-ms psrv3/flaskapp-ms
+docker push psrv3/flaskapp-ms
+
+docker tag time-service psrv3/time-service
+docker push psrv3/time-service
+
+docker tag weather-service psrv3/weather-service
+docker push psrv3/weather-service
+
+docker compose build
+docker compose up
+
+[https://minikube.sigs.k8s.io/docs/handbook/addons/istio/]
+minikube start --memory=8192mb --cpus=4
+minikube addons enable istio-provisioner
+minikube addons enable istio
+kubectl get po -n istio-system
+kubectl label namespace default istio-injection=enabled (optional)
+
+
+kubectl create -f app-deployment.yml
+kubectl create -f time-deployment.yml
+kubectl create -f weather-deployment.yml
+
+kubectl create -f app-service.yml
+kubectl create -f time-service.yaml
+kubectl create -f weather-service.yaml
+
+minikube service flaskapp-ms
+
+kubectl create -f gateway.yml
+kubectl get gateway
+kubectl create -f virtualservice.yaml
+kubectl get virtualservice
+kubectl get svc istio-ingressgateway -n istio-system
+minikube service istio-ingressgateway -n istio-system
+
+kubectl create -f virtualservice-traffic-split.yml
+minikube service istio-ingressgateway -n istio-system
