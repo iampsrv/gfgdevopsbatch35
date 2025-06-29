@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Task Manager</title>
+  <script>
+    async function loadTasks() {
+      const res = await fetch("/api/tasks");
+      const tasks = await res.json();
+      const list = document.getElementById("task-list");
+      list.innerHTML = "";
+      tasks.forEach(t => {
+        list.innerHTML += `<li>
+          <strong>${t.title}</strong> - ${t.description} 
+          [${t.completed ? '✅' : '❌'}]
+          <button onclick="deleteTask(${t.id})">Delete</button>
+        </li>`;
+      });
+    }
+
+    async function addTask() {
+      const title = document.getElementById("title").value;
+      const description = document.getElementById("description").value;
+      await fetch("/api/tasks", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title, description })
+      });
+      document.getElementById("title").value = "";
+      document.getElementById("description").value = "";
+      loadTasks();
+    }
+
+    async function deleteTask(id) {
+      await fetch("/api/tasks/" + id, { method: "DELETE" });
+      loadTasks();
+    }
+
+    window.onload = loadTasks;
+  </script>
+</head>
+<body>
+  <h1>Task Manager</h1>
+  <input id="title" placeholder="Title" />
+  <input id="description" placeholder="Description" />
+  <button onclick="addTask()">Add Task</button>
+
+  <ul id="task-list"></ul>
+</body>
+</html>

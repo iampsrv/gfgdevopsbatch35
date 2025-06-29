@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  labels:
+    name: myapp
+  name: myapprs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: myapp
+  template:
+    metadata:
+      labels:
+        name: myapp
+    spec:
+      containers:
+      - image: psrv3/batch35dhr
+        name: myappcontainer
+        ports:
+        - containerPort: 5000

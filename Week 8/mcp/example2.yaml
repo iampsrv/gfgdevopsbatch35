@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: log-sidecar-pod
+spec:
+  volumes:
+  - name: log-volume
+    emptyDir: {} # ephemeral log storage
+
+  containers:
+  - name: app
+    image: busybox
+    command: [ "sh", "-c", "while true; do echo $(date) 'App is running' >> /var/log/app.log; sleep 5; done" ]
+    volumeMounts:
+    - name: log-volume
+      mountPath: /var/log
+
+  - name: log-sidecar
+    image: busybox
+    command: [ "sh", "-c", "tail -f /var/log/app.log" ]
+    volumeMounts:
+    - name: log-volume
+      mountPath: /var/log
+
+#kubectl create -f example2.yaml
+#kubectl logs log-sidecar-pod -c log-sidecar

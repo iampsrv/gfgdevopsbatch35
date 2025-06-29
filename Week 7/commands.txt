@@ -1,0 +1,4 @@
+kubectl create deployment nginx-deployment --image=nginx
+
+kubectl expose deployment nginx-deployment --port=80 --type=NodePort
+kubectl expose deployment nginx-deployment --port=80 --type=LoadBalancer

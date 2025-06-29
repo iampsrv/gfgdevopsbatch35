@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: teama
+
+# kubectl create ns teama
+
+#kubectl config set-context teama --cluster=minikube --namespace=teama --user=minikube
+#kubectl config get-contexts
+#kubectl config set-context teama
+#kubectl config view 
+
+# https://kubernetes.io/docs/concepts/security/multi-tenancy/

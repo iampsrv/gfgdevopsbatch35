@@ -1,0 +1,17 @@
+1. Install Kubernetes Locally
+Install Minikube and kubectl on your local machine or a virtual server. Start the Kubernetes cluster and verify the installation.
+
+2. Deploy a Simple Application
+Create a Deployment for a basic NGINX web server within your Kubernetes cluster.
+
+3. Expose the Application
+Expose the NGINX Deployment using a Service to make it accessible externally.
+
+4. Create a Deployment Using YAML
+Write a YAML manifest file to define the NGINX Deployment instead of using the command line.
+
+5. Scale the Deployment
+Scale the deployment to 4 replicas.
+
+6. Update the Deployment
+Update the image to nginx:1.25

@@ -1,0 +1,4 @@
+apiVersion: v1, app/v1
+kind: pod/replicaset/deployment
+metadata: name, namespace, labels
+spec: template of container, no of replicas, volume, etc 

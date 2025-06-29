@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: log-html-service
+spec:
+  type: NodePort # Required for Minikube access
+  selector:
+    app: log-html # Must match pod label
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 30080 # Optional fixed port for consistent access

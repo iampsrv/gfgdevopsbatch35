@@ -1,0 +1,6 @@
+multicontainer pod: sidecar and init container
+volume: pv and pvc
+configmap
+statefulset
+hpa
+ingress

@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    name: myapp
+  name: myappdeploy
+spec:
+  replicas: 4
+  strategy:
+    type: Recreate
+    # rollingUpdate:
+    #   maxSurge: 25%
+    #   maxUnavailable: 25%
+    # type: RollingUpdate
+  selector:
+    matchLabels:
+      name: myapp
+  template:
+    metadata:
+      labels:
+        name: myapp
+    spec:
+      containers:
+      - image: psrv3/batch35dhr:2.0.0
+        name: myappcontainer
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: myapp
+  name: myappsvc
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    name: myapp
+  type: LoadBalancer

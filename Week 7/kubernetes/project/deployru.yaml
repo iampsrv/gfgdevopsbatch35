@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    name: myapp
+  name: myappdeploy
+  namespace: default
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      name: myapp
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name: myapp
+    spec:
+      containers:
+      - image: psrv3/batch35dhr:latest
+        name: myappcontainer
+        ports:
+        - containerPort: 8080

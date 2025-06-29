@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    name: myapp
+  name: myapp
+  namespace: teamb
+spec:
+  containers:
+  - image: psrv3/batch35dhr
+    name: myappcontainer
+    ports:
+    - containerPort: 5000
