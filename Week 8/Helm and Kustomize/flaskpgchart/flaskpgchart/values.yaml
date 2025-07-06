@@ -1,0 +1,12 @@
+flaskApp:
+  image: psrv3/flaskposgresqlapp
+  replicaCount: 1
+  containerPort: 5000
+  configMapName: flask-config
+  serviceType: LoadBalancer
+
+postgres:
+  image: postgres:13
+  password: postgres
+  containerPort: 5432
+  replicaCount: 1

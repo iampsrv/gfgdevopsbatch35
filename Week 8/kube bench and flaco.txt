@@ -1,0 +1,17 @@
+kubectl apply -f https://raw.githubusercontent.com/aquasecurity/kube-bench/main/job.yaml
+
+kubectl get jobs
+kubectl get pods
+
+kubectl logs job/kube-bench
+
+
+
+minikube start --driver=docker --feature-gates="DynamicKubeletConfig=true"
+helm repo add falcosecurity https://falcosecurity.github.io/charts
+helm repo update
+
+helm install falco falcosecurity/falco --set driver.kind=ebpf --set falco.jsonOutput=true
+kubectl get pods -n default
+
+kubectl logs -l app=falco

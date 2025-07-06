@@ -13,12 +13,12 @@ spec:
         host: flaskapp-ms
         port:
           number: 80
-      weight: 70
+      weight: 0
     - destination:
         host: flaskapp-msv2
         port:
           number: 80
-      weight: 30
+      weight: 100
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService

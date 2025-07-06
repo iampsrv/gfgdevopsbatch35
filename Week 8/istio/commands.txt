@@ -39,5 +39,5 @@ kubectl get virtualservice
 kubectl get svc istio-ingressgateway -n istio-system
 minikube service istio-ingressgateway -n istio-system
 
-kubectl create -f virtualservice-traffic-split.yml
+kubectl create -f virtualservice-traffic-split.yaml
 minikube service istio-ingressgateway -n istio-system

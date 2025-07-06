@@ -1,0 +1,8 @@
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y curl tar
+curl -LO https://github.com/stackrox/kube-linter/releases/latest/download/kube-linter-linux.tar.gz
+tar -xvf kube-linter-linux.tar.gz
+sudo mv kube-linter /usr/local/bin/
+kube-linter version
+
+kube-linter lint nginx.yaml

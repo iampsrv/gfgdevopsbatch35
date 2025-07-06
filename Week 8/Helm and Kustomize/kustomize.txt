@@ -1,0 +1,13 @@
+# Option 1: via kubectl plugin
+kubectl kustomize --help
+
+# Option 2: install standalone (Linux/macOS)
+brew install kustomize
+# OR
+curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
+
+
+kubectl apply -k my-app/base
+kubectl delete -k my-app/base
+kubectl apply -k my-app/overlays/dev
+kubectl delete -k my-app/overlays/dev

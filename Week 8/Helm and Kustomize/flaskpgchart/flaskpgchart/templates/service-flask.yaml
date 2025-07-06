@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-task
+spec:
+  type: {{ .Values.flaskApp.serviceType }}
+  selector:
+    app: flask-task
+  ports:
+    - port: {{ .Values.flaskApp.containerPort }}
+      targetPort: {{ .Values.flaskApp.containerPort }}

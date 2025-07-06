@@ -1,0 +1,11 @@
+configmap, secrets
+volumes: PV, PVC
+Healthcheck:  LivenessProbe and ReadinessProbe
+Multi Container Pod Setup: Sidecar, Ambassador, init container
+StatefulSets
+HPA
+Networking: Ingress
+
+deployment + init container: frontend
+statefulset (pv): backend
+sidecar container: logging/monitoring

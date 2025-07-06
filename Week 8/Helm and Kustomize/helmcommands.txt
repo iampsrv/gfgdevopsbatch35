@@ -1,0 +1,2 @@
+helm install flask-app ./flaskpgchart
+helm uninstall flask-app
