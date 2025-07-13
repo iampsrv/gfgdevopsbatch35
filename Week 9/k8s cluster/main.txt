@@ -1,0 +1,20 @@
+provider "aws" {
+  region = "us-east-1"
+}
+
+resource "aws_instance" "master" {
+  ami                         = "ami-020cba7c55df1f615"
+  instance_type               = "t2.large"
+  associate_public_ip_address = true
+  availability_zone = "us-east-1a"
+  subnet_id                   = "subnet-0b81e7dc6023ee381"
+  key_name                    = "gfgbatch35new"
+  security_groups = [ "sg-078e9525b45684489" ]
+
+
+  user_data = file("master.sh")
+
+  tags = {
+    Name = "master"
+  }
+}

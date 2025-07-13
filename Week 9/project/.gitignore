@@ -1,0 +1,7 @@
+.terraform.lock.hcl
+.terraform/
+*.txt
+ec2.py
+myec2module/
+terraform.tfstate.backup
+terraform.tfstate
