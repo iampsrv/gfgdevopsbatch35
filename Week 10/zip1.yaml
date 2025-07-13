@@ -1,0 +1,24 @@
+- name: Download and Extract GNU Tar Source Code
+  hosts: prod
+  become: yes
+  tasks:
+    - name: Ensure Required Packages Are Installed
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - wget
+        - tar
+      when: ansible_os_family == "Debian"
+
+    - name: Download GNU Tar Source Code
+      get_url:
+        url: "https://ftp.gnu.org/gnu/tar/tar-1.35.tar.gz"
+        dest: "/tmp/tar-1.35.tar.gz"
+        mode: '0644'
+
+    - name: Extract GNU Tar Source Code
+      unarchive:
+        src: "/tmp/tar-1.35.tar.gz"
+        dest: "/opt/"
+        remote_src: yes

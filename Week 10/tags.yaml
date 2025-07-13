@@ -1,0 +1,27 @@
+- name: Configure Web and DB Servers
+  hosts: all
+  become: true
+  tags:
+    - setup
+
+  tasks:
+    - name: Install Apache
+      apt:
+        name: apache2
+        state: present
+      tags:
+        - webserver
+
+    - name: Install MySQL
+      apt:
+        name: mysql-server
+        state: present
+      tags:
+        - database
+
+ansible-playbook playbook.yml --tags "webserver"
+ansible-playbook playbook.yml --tags "webserver,database"
+ansible-playbook playbook.yml --skip-tags "database"
+ansible-playbook playbook.yml --list-tags
+
+

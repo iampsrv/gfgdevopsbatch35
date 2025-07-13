@@ -1,0 +1,22 @@
+- name: Download and Extract Artifact
+  hosts: app_servers
+  become: yes
+  tasks:
+  
+    - name: Install Unzip Utility (if needed)
+      apt:
+        name: unzip
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: Download the Artifact
+      get_url:
+        url: "https://example.com/artifact.zip"
+        dest: "/tmp/artifact.zip"
+        mode: '0644'
+
+    - name: Extract the ZIP File
+      unarchive:
+        src: "/tmp/artifact.zip"
+        dest: "/var/www/app"
+        remote_src: yes

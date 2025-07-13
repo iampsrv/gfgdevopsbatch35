@@ -1,0 +1,10 @@
+---
+- name: display output variable
+  hosts: prodev
+  become: yes
+  tasks:
+    - name: Execute shell script
+      command: cat /home/ubuntu/script.sh
+      register: mymotd
+    - name: Print the registered variable
+      debug: var=mymotd["stdout_lines"]
