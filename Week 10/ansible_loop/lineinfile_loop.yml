@@ -1,0 +1,12 @@
+---
+- name: Add lines to file using loop
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Add lines to MOTD
+      lineinfile:
+        path: /etc/motd
+        line: "{{ item }}"
+      loop:
+        - "Welcome!"
+        - "System under monitoring."

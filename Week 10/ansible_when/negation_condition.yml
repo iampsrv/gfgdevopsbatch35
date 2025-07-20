@@ -1,0 +1,8 @@
+---
+- name: Skip task on CentOS
+  hosts: localhost
+  tasks:
+    - name: Run task only if not CentOS
+      debug:
+        msg: "This is NOT CentOS"
+      when: ansible_distribution != "CentOS"

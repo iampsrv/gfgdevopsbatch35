@@ -1,0 +1,16 @@
+---
+- name: Ping multiple hosts and register result
+  hosts: localhost
+  tasks:
+    - name: Ping loop
+      ping:
+      register: ping_results
+      loop:
+        - localhost
+        - 127.0.0.1
+        - "::1"
+
+    - name: Print ping result messages
+      debug:
+        msg: "Ping result for item {{ item.item }} was {{ item.ping }}"
+      loop: "{{ ping_results.results }}"

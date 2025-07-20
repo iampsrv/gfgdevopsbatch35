@@ -1,0 +1,10 @@
+---
+- name: Run task based on OS family
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install Apache on Debian-based systems
+      apt:
+        name: apache2
+        state: present
+      when: ansible_os_family == "Debian"

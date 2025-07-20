@@ -1,0 +1,10 @@
+---
+- name: Frontend Deployment
+  hosts: frontend
+  roles:
+    - { role: deploy_frontend, tags: frontend }
+
+- name: Backend Deployment
+  hosts: backend
+  roles:
+    - { role: deploy_backend, tags: backend }

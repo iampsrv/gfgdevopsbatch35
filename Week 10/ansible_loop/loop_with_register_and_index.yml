@@ -1,0 +1,23 @@
+---
+- name: Loop with register and index
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Install packages with index
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - htop
+        - tree
+      loop_control:
+        index_var: idx
+
+    - name: Print installation info
+      debug:
+        msg: "Installed package {{ item }} at index {{ idx }}"
+      loop:
+        - htop
+        - tree
+      loop_control:
+        index_var: idx

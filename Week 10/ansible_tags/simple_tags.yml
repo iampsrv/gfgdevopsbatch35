@@ -1,0 +1,22 @@
+---
+- name: Install and configure web server
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: Install Apache
+      apt:
+        name: apache2
+        state: present
+      tags: apache
+
+    - name: Copy configuration file
+      template:
+        src: web.conf.j2
+        dest: /etc/apache2/sites-available/000-default.conf
+      tags: config
+
+    - name: Restart Apache
+      service:
+        name: apache2
+        state: restarted
+      tags: restart

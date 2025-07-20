@@ -1,0 +1,11 @@
+wget https://raw.githubusercontent.com/ansible/ansible/stable-2.8/contrib/inventory/ec2.ini
+wget https://raw.githubusercontent.com/ansible/ansible/stable-2.8/contrib/inventory/ec2.py
+
+sudo mv ec2.py /etc/ansible/hosts
+sudo chmod +x /etc/ansible/hosts
+sudo mv ec2.ini /etc/ansible/
+
+sudo vi /etc/ansible/ec2.ini
+ansible all --list
+
+ansible all -m ping --private-key=~/ansible.pem

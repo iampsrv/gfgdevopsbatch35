@@ -1,0 +1,20 @@
+---
+- name: Add users conditionally
+  hosts: localhost
+  become: yes
+  vars:
+    users:
+      - name: alice
+        active: true
+      - name: bob
+        active: false
+      - name: carol
+        active: true
+
+  tasks:
+    - name: Add only active users
+      user:
+        name: "{{ item.name }}"
+        state: present
+      loop: "{{ users }}"
+      when: item.active

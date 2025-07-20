@@ -1,0 +1,30 @@
+---
+- name: Manage NGINX Service
+  hosts: webservers
+  become: true
+  vars:
+    service_name: nginx
+
+  tasks:
+    - name: Check if nginx is active
+      shell: systemctl is-active {{ service_name }}
+      register: nginx_status
+      ignore_errors: yes
+
+    - name: Show nginx status output
+      debug:
+        msg: "NGINX service status: {{ nginx_status.stdout }}"
+
+    - name: Restart nginx if not running
+      service:
+        name: "{{ service_name }}"
+        state: restarted
+      when: nginx_status.stdout != "active"
+
+    - name: Confirm nginx is now running
+      shell: systemctl is-active {{ service_name }}
+      register: nginx_status_after
+
+    - name: Log nginx status after restart
+      debug:
+        msg: "NGINX service status after restart: {{ nginx_status_after.stdout }}"

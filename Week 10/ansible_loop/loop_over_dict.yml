@@ -1,0 +1,13 @@
+---
+- name: Add users from dictionary
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Add users with specific shells
+      user:
+        name: "{{ item.name }}"
+        shell: "{{ item.shell }}"
+        state: present
+      loop:
+        - { name: 'alice', shell: '/bin/bash' }
+        - { name: 'bob', shell: '/bin/zsh' }

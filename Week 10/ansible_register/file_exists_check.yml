@@ -1,0 +1,19 @@
+---
+- name: Check if file exists before creating it
+  hosts: localhost
+  tasks:
+    - name: Check if /tmp/example.txt exists
+      stat:
+        path: /tmp/example.txt
+      register: file_check
+
+    - name: Create the file only if it doesn't exist
+      copy:
+        content: "Hello, Ansible!"
+        dest: /tmp/example.txt
+      when: not file_check.stat.exists
+
+    - name: Print result
+      debug:
+        msg: "File was created."
+      when: not file_check.stat.exists

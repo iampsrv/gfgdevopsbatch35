@@ -1,0 +1,15 @@
+---
+- name: Sample play to demonstrate tags
+  hosts: localhost
+  tasks:
+    - name: Task with one tag
+      debug:
+        msg: "Tagged with 'one'"
+      tags: one
+
+    - name: Task with multiple tags
+      debug:
+        msg: "Tagged with 'two' and 'three'"
+      tags:
+        - two
+        - three

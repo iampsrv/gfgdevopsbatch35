@@ -1,0 +1,8 @@
+---
+- name: Check if variable is defined
+  hosts: localhost
+  tasks:
+    - name: Print welcome message if variable is defined
+      debug:
+        msg: "Hello, {{ welcome_user }}!"
+      when: welcome_user is defined

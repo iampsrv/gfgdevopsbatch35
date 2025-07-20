@@ -1,0 +1,17 @@
+---
+- name: Run script and check result
+  hosts: localhost
+  tasks:
+    - name: Run a custom script
+      shell: /usr/local/bin/myscript.sh
+      register: script_output
+      ignore_errors: true
+
+    - name: Show script output
+      debug:
+        msg: "Script said: {{ script_output.stdout }}"
+
+    - name: Do something if script failed
+      debug:
+        msg: "Script failed, taking fallback action"
+      when: script_output.rc != 0

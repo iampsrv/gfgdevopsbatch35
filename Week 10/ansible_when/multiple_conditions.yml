@@ -1,0 +1,10 @@
+---
+- name: Run task with multiple conditions
+  hosts: localhost
+  tasks:
+    - name: Perform task if OS is Ubuntu and version is 20.04
+      debug:
+        msg: "This is Ubuntu 20.04"
+      when:
+        - ansible_distribution == "Ubuntu"
+        - ansible_distribution_version == "20.04"

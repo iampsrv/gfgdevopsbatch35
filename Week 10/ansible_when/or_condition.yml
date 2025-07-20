@@ -1,0 +1,8 @@
+---
+- name: Run task on Debian or RedHat families
+  hosts: localhost
+  tasks:
+    - name: Install something on Debian or RedHat
+      debug:
+        msg: "Supported OS family"
+      when: ansible_os_family == "Debian" or ansible_os_family == "RedHat"

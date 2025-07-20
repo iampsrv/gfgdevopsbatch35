@@ -1,0 +1,28 @@
+---
+- name: Database Setup
+  hosts: dbservers
+  become: yes
+  tasks:
+    - name: Install MySQL
+      yum:
+        name: mysql-server
+        state: present
+      tags:
+        - install
+        - mysql
+
+    - name: Configure MySQL
+      template:
+        src: my.cnf.j2
+        dest: /etc/my.cnf
+      tags:
+        - config
+        - mysql
+
+    - name: Restart MySQL
+      service:
+        name: mysqld
+        state: restarted
+      tags:
+        - restart
+        - mysql
