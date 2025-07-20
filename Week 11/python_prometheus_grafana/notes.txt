@@ -1,0 +1,17 @@
+http://localhost:8000/metrics
+http://prometheus:9090
+http://localhost:5000
+http://localhost:3000
+
+http_requests_total
+http_request_latency_seconds
+request_latency_seconds_by_route
+cpu_usage_percent
+memory_usage_percent
+app_errors_total
+http_requests_by_status
+
+http_requests_total
+cpu_usage_percent
+memory_usage_percent
+request_latency_seconds_by_route{route="/"}
