@@ -1,0 +1,15 @@
+global:
+  resolve_timeout: 5m
+
+receivers:
+  - name: 'discord'
+    discord_configs:
+      - webhook_url: 'https://discord.com/api/webhooks/1203723015855022190/FfYyR8h6ISsZY4fKkYi10Xi-F1kgHFS6Opr5Y4ebY4F76_Bjxp3iF1WV05QBoXRbVX4r'
+        title: '{{ .CommonAnnotations.summary }}'
+        message: '{{ .CommonAnnotations.description }}'
+
+route:
+  receiver: 'discord'
+  group_wait: 10s
+  group_interval: 30s
+  repeat_interval: 1m

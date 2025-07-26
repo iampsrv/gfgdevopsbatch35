@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/alert.rules.yml:/etc/prometheus/alert.rules.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - monitor-net
+
+  alertmanager:
+    image: prom/alertmanager
+    container_name: alertmanager
+    volumes:
+      - ./alertmanager/config.yml:/etc/alertmanager/config.yml
+    ports:
+      - "9093:9093"
+    command:
+      - '--config.file=/etc/alertmanager/config.yml'
+    networks:
+      - monitor-net
+
+  grafana:
+    image: grafana/grafana-oss
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-storage:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    networks:
+      - monitor-net
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+
+  node1:
+    image: ubuntu:22.04
+    container_name: node1
+    command: /bin/bash -c "apt update && apt install -y wget && wget https://github.com/prometheus/node_exporter/releases/download/v1.8.1/node_exporter-1.8.1.linux-amd64.tar.gz && tar xvf node_exporter-1.8.1.linux-amd64.tar.gz && cd node_exporter-1.8.1.linux-amd64 && ./node_exporter"
+    ports:
+      - "9101:9100"
+    networks:
+      - monitor-net
+
+  node2:
+    image: ubuntu:22.04
+    container_name: node2
+    command: /bin/bash -c "apt update && apt install -y wget && wget https://github.com/prometheus/node_exporter/releases/download/v1.8.1/node_exporter-1.8.1.linux-amd64.tar.gz && tar xvf node_exporter-1.8.1.linux-amd64.tar.gz && cd node_exporter-1.8.1.linux-amd64 && ./node_exporter"
+    ports:
+      - "9102:9100"
+    networks:
+      - monitor-net
+
+  node3:
+    image: ubuntu:22.04
+    container_name: node3
+    command: /bin/bash -c "apt update && apt install -y wget && wget https://github.com/prometheus/node_exporter/releases/download/v1.8.1/node_exporter-1.8.1.linux-amd64.tar.gz && tar xvf node_exporter-1.8.1.linux-amd64.tar.gz && cd node_exporter-1.8.1.linux-amd64 && ./node_exporter"
+    ports:
+      - "9103:9100"
+    networks:
+      - monitor-net
+
+volumes:
+  grafana-storage:
+
+networks:
+  monitor-net:

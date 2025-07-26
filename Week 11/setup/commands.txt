@@ -1,0 +1,9 @@
+kubectl create namespace monitoring
+kubectl apply -n monitoring -f p.yaml
+kubectl apply -n monitoring -f g.yaml
+kubectl apply -n monitoring -f https://raw.githubusercontent.com/prometheus/node_exporter/master/examples/k8s-node-exporter-daemonset.yaml
+kubectl apply -n monitoring -f https://raw.githubusercontent.com/openai-testing/prometheus-monitoring-yamls/main/kube-state-metrics.yaml
+minikube service prometheus -n monitoring
+minikube service grafana -n monitoring
+http://prometheus:9090
+

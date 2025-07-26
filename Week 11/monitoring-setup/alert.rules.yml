@@ -1,0 +1,63 @@
+groups:
+  - name: node_alerts
+    rules:
+
+    #  Instance Down
+    - alert: InstanceDown
+      expr: up == 0
+      for: 1m
+      labels:
+        severity: critical
+      annotations:
+        summary: "Instance {{ $labels.instance }} is down"
+        description: "The target {{ $labels.instance }} has been unreachable for more than 1 minute."
+
+    #  High Memory Usage
+    - alert: HighMemoryUsage
+      expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes > 0.85
+      for: 2m
+      labels:
+        severity: warning
+      annotations:
+        summary: "High Memory Usage on {{ $labels.instance }}"
+        description: "{{ $labels.instance }} memory usage is above 85%."
+
+    #  High CPU Usage
+    - alert: HighCPUUsage
+      expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 85
+      for: 2m
+      labels:
+        severity: warning
+      annotations:
+        summary: "High CPU Usage on {{ $labels.instance }}"
+        description: "{{ $labels.instance }} CPU usage has been over 85% for 2 minutes."
+
+    #  Low Disk Space
+    - alert: LowDiskSpace
+      expr: (node_filesystem_size_bytes{fstype!~"tmpfs|overlay"} - node_filesystem_free_bytes{fstype!~"tmpfs|overlay"}) / node_filesystem_size_bytes{fstype!~"tmpfs|overlay"} > 0.8
+      for: 3m
+      labels:
+        severity: warning
+      annotations:
+        summary: "Low disk space on {{ $labels.instance }} mount {{ $labels.mountpoint }}"
+        description: "{{ $labels.instance }} mount {{ $labels.mountpoint }} is over 80% full."
+
+    #  Filesystem Full
+    - alert: FilesystemAlmostFull
+      expr: node_filesystem_free_bytes{fstype!~"tmpfs|overlay"} / node_filesystem_size_bytes{fstype!~"tmpfs|overlay"} < 0.15
+      for: 2m
+      labels:
+        severity: critical
+      annotations:
+        summary: "Filesystem nearly full on {{ $labels.instance }}"
+        description: "{{ $labels.instance }} has less than 15% disk space remaining on {{ $labels.mountpoint }}."
+
+    #  Node Has Restarted Recently
+    - alert: NodeRestarted
+      expr: time() - node_boot_time_seconds < 300
+      for: 0m
+      labels:
+        severity: info
+      annotations:
+        summary: "{{ $labels.instance }} restarted"
+        description: "{{ $labels.instance }} has restarted within the last 5 minutes."
